@@ -1,0 +1,10 @@
+^D:\CMP\3\2\COMPUTER GRAPHICS\PROJECT\CMP3060 PROJECT - STUDENT VERSION - WINDOWS\CMAKEFILES\9400D30486555E702A614A01F1745744\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\bin\cmake.exe" "-SD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" "-BD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/GFX-LAB.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{63E225B1-F99C-3AD1-9B7C-5FE7F55CD050}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>GAME_APPLICATION</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GAME_APPLICATION.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GAME_APPLICATION</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GAME_APPLICATION.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GAME_APPLICATION</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">GAME_APPLICATION.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">GAME_APPLICATION</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">GAME_APPLICATION.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">GAME_APPLICATION</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>vendor\glfw\src\Debug\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/Debug/GAME_APPLICATION.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/bin/GAME_APPLICATION.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>vendor\glfw\src\Release\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/Release/GAME_APPLICATION.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/bin/GAME_APPLICATION.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>vendor\glfw\src\MinSizeRel\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/MinSizeRel/GAME_APPLICATION.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/bin/MinSizeRel/GAME_APPLICATION.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\include;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glm;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>vendor\glfw\src\RelWithDebInfo\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/RelWithDebInfo/GAME_APPLICATION.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/bin/RelWithDebInfo/GAME_APPLICATION.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\bin\cmake.exe" "-SD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" "-BD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" --check-stamp-file "D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCXXCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeRCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\bin\cmake.exe" "-SD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" "-BD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" --check-stamp-file "D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCXXCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeRCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\bin\cmake.exe" "-SD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" "-BD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" --check-stamp-file "D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCXXCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeRCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\bin\cmake.exe" "-SD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" "-BD:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows" --check-stamp-file "D:/CMP/3/2/Computer Graphics/Project/CMP3060 Project - Student Version - Windows/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeCXXCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeRCCompiler.cmake;D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\3.29.0-rc3\CMakeSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\Program Files\cmake-3.29.0-rc3-windows-x86_64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\main.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\play-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\menu-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\shader-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\mesh-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\transform-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\pipeline-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\texture-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\sampler-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\material-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\entity-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\states\renderer-test-state.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\application.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\application.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\input\keyboard.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\input\mouse.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\asset-loader.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\asset-loader.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\deserialize-utils.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\shader\shader.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\shader\shader.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\mesh\vertex.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\mesh\mesh.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\mesh\mesh-utils.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\mesh\mesh-utils.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\sampler.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\sampler.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\texture2d.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\texture-utils.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\texture-utils.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\screenshot.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\texture\screenshot.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\material\pipeline-state.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\material\pipeline-state.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\material\material.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\material\material.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\component.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\transform.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\transform.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\entity.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\entity.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\world.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\ecs\world.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\camera.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\camera.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\mesh-renderer.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\mesh-renderer.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\free-camera-controller.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\free-camera-controller.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\movement.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\movement.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\components\component-deserializer.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\systems\forward-renderer.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\systems\forward-renderer.cpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\systems\free-camera-controller.hpp" />
+    <ClInclude Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\source\common\systems\movement.hpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glad\src\gl.c" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui\imgui.cpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui\imgui_impl\imgui_impl_glfw.cpp" />
+    <ClCompile Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\imgui\imgui_impl\imgui_impl_opengl3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\ZERO_CHECK.vcxproj">
+      <Project>{BBDE6BC1-1EFF-337F-BEBE-E4FF9EE8D604}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\CMP\3\2\Computer Graphics\Project\CMP3060 Project - Student Version - Windows\vendor\glfw\src\glfw.vcxproj">
+      <Project>{9DCDCE02-27B3-3ADB-A4A0-4EBDBBF9F458}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
