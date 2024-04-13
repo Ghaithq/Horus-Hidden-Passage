@@ -29,7 +29,7 @@ screenshots/
 
 # Other build files
 *.sln
-*.vcxproj
+*.vcxproj*
 CMakeCache.txt
-
+*.cmake
 

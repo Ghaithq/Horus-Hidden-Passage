@@ -33,11 +33,11 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
     //checking for errors
     std::string compErrors = checkForShaderCompilationErrors(shader);
-    if (compErrors.length() != '0')
+    if (compErrors.length() != 0)
     {
         //std::ofstream logFile("log");
         //logFile.open("shaderError.log");
-        std::cerr << "Shader Compilation Error\n";
+        std::cerr << "----SHADER COMPILATION ERROR----\n";
         std::cerr << compErrors;
         //logFile.close();
         return false;
@@ -45,7 +45,6 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     
     //attaching the shader
     glAttachShader(this->program, shader);
-
 
     //We return true if the compilation succeeded
     return true;
@@ -65,12 +64,12 @@ bool our::ShaderProgram::link() const {
 
     std::string linkErrors = checkForShaderCompilationErrors(this->program);
 
-    if (linkErrors.length() != '0')
+    if (linkErrors.length() != 0)
     {
 
         //std::ofstream logFile("log");
         //logFile.open("shaderError.log");
-        std::cerr << "Shader Linking Error\n";
+        std::cerr << "----SHADER LINKING ERROR----\n";
         std::cerr << linkErrors;
         //logFile.close();
         return false;
