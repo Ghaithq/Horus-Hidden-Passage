@@ -4,6 +4,9 @@ cmake-build-*/
 build/
 out/
 bin/
+Debug/
+x64/
+GAME_APPLICATION.dir/
 
 # imgui saved state
 imgui.ini
@@ -23,4 +26,10 @@ CMakeSettings.json
 
 # Screenshots
 screenshots/
+
+# Other build files
+*.sln
+*.vcxproj
+CMakeCache.txt
+
 
