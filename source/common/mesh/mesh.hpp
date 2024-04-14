@@ -42,23 +42,23 @@ namespace our {
             glGenVertexArrays(1, &VAO);
             glBindVertexArray(VAO);
 
-            glVertexAttribPointer(ATTRIB_LOC_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+            glVertexAttribPointer(ATTRIB_LOC_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
             glEnableVertexAttribArray(ATTRIB_LOC_POSITION);
 
-            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float))); // (3 * sizeof(float) is the offset of the color attribute in the struct, since the color attribute is the second one after the position attribute)
+            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color))); // (3 * sizeof(float) is the offset of the color attribute in the struct, since the color attribute is the second one after the position attribute)
             glEnableVertexAttribArray(ATTRIB_LOC_COLOR);
 
-            glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float) + 4* sizeof(glm::uint8)));
+            glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, tex_coord)));
             glEnableVertexAttribArray(ATTRIB_LOC_TEXCOORD);
 
-            glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float) + 4 * sizeof(glm::uint8) + 2 * sizeof(float)));
+            glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, normal)));
             glEnableVertexAttribArray(ATTRIB_LOC_NORMAL);
 
             glGenBuffers(1, &EBO);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements.size() * sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
 
-            //glBindVertexArray(0); // not sure where this should be used
+            //glBindVertexArray(0); // not sure where this should be used, or if it should be used at all
         }
 
         // this function should render the mesh
