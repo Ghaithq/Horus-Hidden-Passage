@@ -5,10 +5,10 @@
 
 namespace our {
 
-#define ATTRIB_LOC_POSITION 0
-#define ATTRIB_LOC_COLOR    1
-#define ATTRIB_LOC_TEXCOORD 2
-#define ATTRIB_LOC_NORMAL   3
+    #define ATTRIB_LOC_POSITION 0
+    #define ATTRIB_LOC_COLOR    1
+    #define ATTRIB_LOC_TEXCOORD 2
+    #define ATTRIB_LOC_NORMAL   3
 
     class Mesh {
         // Here, we store the object names of the 3 main components of a mesh:
@@ -26,13 +26,6 @@ namespace our {
         // a vertex buffer to store the vertex data on the VRAM,
         // an element buffer to store the element data on the VRAM,
         // a vertex array object to define how to read the vertex & element buffer during rendering 
-
-        // just for me, should be deleted
-        //struct Vertex {
-        //    glm::vec3 position;     // The vertex position in the local space
-        //    Color color;            // The vertex color
-        //    glm::vec2 tex_coord;    // The texture coordinates (the vertex position in the texture space)
-        //    glm::vec3 normal;
 
         Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& elements)
         {
