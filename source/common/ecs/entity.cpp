@@ -23,9 +23,7 @@ namespace our {
 
     // Deserializes the entity data and components from a json object
     void Entity::deserialize(const nlohmann::json& data){
-        std::cout<<data<<std::endl;
         if(!data.is_object()) return;
-        std::cout<<"completed"<<std::endl;
         name = data.value("name", name);
         localTransform.deserialize(data);
         if(data.contains("components")){
