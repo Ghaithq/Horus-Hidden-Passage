@@ -65,6 +65,7 @@ namespace our {
     //    { mesh_name : "path/to/3d-model-file", ... }
     template<>
     void AssetLoader<Mesh>::deserialize(const nlohmann::json& data) {
+        
         if(data.is_object()){
             for(auto& [name, desc] : data.items()){
                 std::string path = desc.get<std::string>();

@@ -18,7 +18,6 @@ namespace our {
             localToWorldMatrix= entityParent->localTransform.toMat4() * localToWorldMatrix;
             entityParent=entityParent->parent;
         } 
-        
         return localToWorldMatrix;
     }
 

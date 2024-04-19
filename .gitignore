@@ -9,6 +9,7 @@ GAME_APPLICATION.dir/
 vendor/
 Testing/
 CMakeFiles/
+screenshots/
 
 # imgui saved state
 imgui.ini

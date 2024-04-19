@@ -2,7 +2,7 @@
 
 #include <unordered_set>
 #include "entity.hpp"
-
+#include <iostream>
 namespace our {
 
     // This class holds a set of entities
