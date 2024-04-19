@@ -58,6 +58,7 @@ namespace our {
             //TODO: (Req 11) Create a framebuffer
             GLuint framebuffer;
             glGenFramebuffers(1, &framebuffer);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
             postprocessFrameBuffer = framebuffer; // save the framebuffer in the member variable for the ForwardRenderer class
 
             //TODO: (Req 11) Create a color and a depth texture and attach them to the framebuffer
@@ -179,7 +180,7 @@ namespace our {
             //TODO: (Req 11) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
         }
-
+       
         //TODO: (Req 9) Clear the color and depth buffers
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -225,15 +226,17 @@ namespace our {
             transparentCommand.material->shader->set("transform", VP*transparentCommand.localToWorld);
             transparentCommand.mesh->draw();
         }
-
+        
 
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-            
+
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
-          
+            postprocessMaterial->setup();
+            glBindVertexArray(postProcessVertexArray);
+            glDrawArrays(GL_TRIANGLES, 0, 3);
         }
     }
 
