@@ -73,7 +73,7 @@ namespace our {
             glUniformMatrix4fv(this->getUniformLocation(uniform), 1, GL_FALSE, glm::value_ptr(matrix));
         }
 
-        //TODO: (Req 1) Delete the copy constructor and assignment operator.
+        // TODO: (Req 1) Delete the copy constructor and assignment operator.
         //Question: Why do we delete the copy constructor and assignment operator?
     };
 
