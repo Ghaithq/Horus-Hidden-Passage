@@ -24,10 +24,10 @@ namespace our {
             // We will draw the sphere from the inside, so what options should we pick for the face culling.
             PipelineState skyPipelineState{};
             skyPipelineState.faceCulling.enabled=true;
-            skyPipelineState.faceCulling.culledFace=GL_CCW;
-            skyPipelineState.faceCulling.frontFace=GL_BACK;
+            skyPipelineState.faceCulling.culledFace= GL_FRONT;
+            skyPipelineState.faceCulling.frontFace = GL_CCW;
             skyPipelineState.depthTesting.enabled=true;
-            skyPipelineState.depthTesting.function=GL_LESS;
+            skyPipelineState.depthTesting.function=GL_LEQUAL;
 
             
             
@@ -142,7 +142,7 @@ namespace our {
 
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::vec3 cameraForward =camera->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0, 0.0, -1.0f,0.0);
+        glm::vec3 cameraForward =(camera->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0, 0.0, -1.0f,0.0));
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             //HINT: the following return should return true "first" should be drawn before "second". 
@@ -155,15 +155,15 @@ namespace our {
         glm::mat4 VP=camera->getProjectionMatrix(windowSize)*camera->getViewMatrix();
         
         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
-        glViewport(0,0,windowSize.x,windowSize.y);
+        glViewport(0,0,this->windowSize.x,this->windowSize.y);
         
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
         glClearColor(0.0,0.0,0.0,1.0);
         glClearDepth(1);
         
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
-        glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
-        glDepthMask(GL_TRUE);
+        glColorMask(true, true, true, true);
+        glDepthMask(true);
 
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
@@ -178,6 +178,7 @@ namespace our {
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto opaqueCommand:opaqueCommands)
         {
+            opaqueCommand.material->setup();
             opaqueCommand.material->shader->set("transform",VP*opaqueCommand.localToWorld);
             opaqueCommand.mesh->draw();
         }
@@ -187,21 +188,22 @@ namespace our {
             skyMaterial->setup();
 
             //TODO: (Req 10) Get the camera position
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+            glm::vec3 cameraPos = ((camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0.0, 0.0, 0.0, 1.0f)));
             //TODO: (Req 10) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // skyMaterial->
+            glm::mat4 model = glm::translate(glm::mat4(1.0f) , cameraPos);
+
 
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f
+                0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 1.0f
             );
             //TODO: (Req 10) set the "transform" uniform
-            skyMaterial->shader->set("transform",alwaysBehindTransform);
+            skyMaterial->shader->set("transform",alwaysBehindTransform * VP * model);
 
             //TODO: (Req 10) draw the sky sphere
             skySphere->draw();
@@ -210,7 +212,8 @@ namespace our {
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto transparentCommand:transparentCommands)
         {
-            transparentCommand.material->shader->set("transform", transparentCommand.localToWorld*VP);
+            transparentCommand.material->setup();
+            transparentCommand.material->shader->set("transform", VP*transparentCommand.localToWorld);
             transparentCommand.mesh->draw();
         }
 
