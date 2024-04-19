@@ -35,7 +35,7 @@ namespace our {
         // - the center position which is the point (0,0,-1) but after being transformed by M
         // - the up direction which is the vector (0,1,0) but after being transformed by M
         glm::vec3 eye=(M*( glm::vec4(0,0,0,1)));
-        glm::vec3 center=M* (glm::vec4(0,0,-1,0));
+        glm::vec3 center=M* (glm::vec4(0,0,-1,1));
         glm::vec3 up=M * (glm::vec4(0,1,0,0));
 
         glm::mat4 viewMatrix=glm::lookAt(eye,center,up);
