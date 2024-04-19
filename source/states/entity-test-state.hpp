@@ -50,11 +50,12 @@ class EntityTestState: public our::State {
         for(auto& entity : world.getEntities()){
             // For each entity, we look for a mesh renderer (if none was found, we skip this entity)
             our::MeshRendererComponent* meshRenderer = entity->getComponent<our::MeshRendererComponent>();
+            std::cout<<"namelkknaskdnasjdejawpoejmam;d;lmvcndbnzx;lmfv;lajsj;joqepoja;nf;kanfaiprjpoawjr"<<std::endl;   
             if(meshRenderer == nullptr) continue;
             //TODO: (Req 8) Complete the loop body to draw the current entity
             meshRenderer->material->setup();
-            
-
+            meshRenderer->material->shader->set("transform",VP*meshRenderer->getOwner()->getLocalToWorldMatrix());
+            meshRenderer->mesh->draw();
             // Then we setup the material, send the transform matrix to the shader then draw the mesh
 
         }
