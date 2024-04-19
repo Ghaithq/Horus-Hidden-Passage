@@ -8,7 +8,10 @@
 our::Texture2D* our::texture_utils::empty(GLenum format, glm::ivec2 size){
     our::Texture2D* texture = new our::Texture2D();
     //TODO: (Req 11) Finish this function to create an empty texture with the given size and format
-
+    texture->bind();
+    // calculate the number of mipmaps needed for the texture
+    GLsizei levels = (GLsizei)std::floor(std::log2((float)std::max(size.x, size.y))) + 1; // depth texture doesn't need mipmaps, so I don't know how we can handle his case given the current arguments
+    glTexStorage2D(GL_TEXTURE_2D, levels, format, size.x, size.y);
     return texture;
 }
 
@@ -35,9 +38,6 @@ our::Texture2D* our::texture_utils::loadImage(const std::string& filename, bool 
     our::Texture2D* texture = new our::Texture2D();
     //Bind the texture such that we upload the image data to its storage
     //TODO: (Req 5) Finish this function to fill the texture with the data found in "pixels"
-    // 
-    // GLuint tex_name = texture->getOpenGLName(); no need here
-
     texture->bind();
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.x, size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
     if(generate_mipmap){
