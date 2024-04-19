@@ -7,7 +7,6 @@ namespace our {
     // If any of the entities has children, this function will be called recursively for these children
     void World::deserialize(const nlohmann::json& data, Entity* parent){
         if(!data.is_array()) return;
-        // std::cout<<data<<std::endl;
         for(const auto& entityData : data){
             //TODO: (Req 8) Create an entity, make its parent "parent" and call its deserialize with "entityData".
             Entity* newEntity= add();
@@ -17,13 +16,7 @@ namespace our {
             if(entityData.contains("children")){
                 //TODO: (Req 8) Recursively call this world's "deserialize" using the children data
                 // and the current entity as the parent
-                // std::cout<<"1"<<std::endl;
-                for(const auto& childEntity: entityData["children"]){
-                    
-                    std::cout<<childEntity<<std::endl;
-                    this->deserialize(nlohmann::json(childEntity),newEntity);
-                }
-                
+                this->deserialize(entityData["children"], newEntity);
             }
         }
     }

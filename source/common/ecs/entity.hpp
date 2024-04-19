@@ -48,7 +48,6 @@ namespace our {
         T* getComponent(){
             //TODO: (Req 8) Go through the components list and find the first component that can be dynamically cast to "T*".
             // Return the component you found, or return null of nothing was found.
-            std::cout<<" components size =               "<<components.size()<<std::endl;
             for(auto component=components.begin();component!=components.end();std::advance(component,1)){
                 if (dynamic_cast<T*>(*component) != nullptr) return dynamic_cast<T*>(*component);
             }
