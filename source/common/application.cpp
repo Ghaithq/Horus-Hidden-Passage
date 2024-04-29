@@ -12,6 +12,9 @@
 
 #include <flags/flags.h>
 
+#define MINIAUDIO_IMPLEMENTATION
+#include "./miniaudio.h"
+
 // Include the Dear ImGui implementation headers
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD2
 #include <imgui_impl/imgui_impl_glfw.h>
@@ -238,6 +241,19 @@ int our::Application::run(int run_for_frames) {
     // The time at which the last frame started. But there was no frames yet, so we'll just pick the current time.
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
+
+    ma_result result;
+    ma_engine engine;
+
+
+
+    result = ma_engine_init(NULL, &engine);
+    if (result != MA_SUCCESS) {
+        printf("Failed to initialize audio engine.");
+        return -1;
+    }
+
+    ma_engine_play_sound(&engine, ".\\assets\\audios\\el_doc.wav", NULL);
 
     //Game loop
     while(!glfwWindowShouldClose(window)){
