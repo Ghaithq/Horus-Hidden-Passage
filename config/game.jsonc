@@ -1,0 +1,148 @@
+{
+    "start-scene": "menu",
+    "window":
+    {
+        "title":"Default Game Window",
+        "size":{
+            "width":1280,
+            "height":720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "renderer":{
+            "sky": "assets/textures/sky.jpg",
+            "postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
+        "assets":{
+            "shaders":{
+                "tinted":{
+                    "vs":"assets/shaders/tinted.vert",
+                    "fs":"assets/shaders/tinted.frag"
+                },
+                "textured":{
+                    "vs":"assets/shaders/textured.vert",
+                    "fs":"assets/shaders/textured.frag"
+                }
+            },
+            "textures":{
+                "tomb":"assets/textures/tomb.png",
+                "cube":"assets/textures/tomb3.png",
+                "torch":"assets/textures/torch.png"
+            },
+            "meshes":{
+                "tomb":"assets/models/tomb.obj",
+                "cube": "assets/models/cube.obj",
+                "torch":"assets/models/torch.obj"
+            },
+            "samplers":{
+                "default":{},
+                "pixelated":{
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials":{
+                "tomb":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "tomb",
+                    "sampler": "default"
+                },
+                "cube":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "cube",
+                    "sampler": "default"
+                },
+                "torch":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "torch",
+                    "sampler": "default"
+                }
+
+
+            }
+        },
+        "world":[
+            {
+                "position": [0, 0, 10],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+            
+                ],
+                "children": [
+                    {
+                        "position": [1, -1, -1],
+                        "rotation": [135, 45, 180],
+                        "scale": [1, 1, 1.0],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "torch",
+                                "material": "torch"
+                            }
+                        ]
+                    }
+                ]
+
+            },
+            {
+            "scale":[50,50,50],
+            "position":[0,0,0],
+            "components":[
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "cube",
+                    "material": "cube"
+                }
+            ],
+            "children":[
+            {
+                "scale": [5,5,5],
+                "position":[0,0,0],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "tomb",
+                        "material": "tomb"
+                    }
+                   
+                ]
+            }]
+        }
+        ]
+    }
+}

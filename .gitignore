@@ -16,7 +16,7 @@ imgui.ini
 
 # Since ".obj" are ignored by default, we force them to be added
 !assets/models/**/*.obj
-
+assets/models/tomb.obj
 # Visual Studio specific files
 CMakeSettings.json
 .vs/
