@@ -1,0 +1,1038 @@
+{
+    "start-scene": "play",
+    "window":
+    {
+        "title":"Default Game Window",
+        "size":{
+            "width":1280,
+            "height":720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "renderer":{
+            "sky": "assets/textures/sky_2.jpg",
+            "postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
+        "assets":{
+            "shaders":{
+                "tinted":{
+                    "vs":"assets/shaders/tinted.vert",
+                    "fs":"assets/shaders/tinted.frag"
+                },
+                "textured":{
+                    "vs":"assets/shaders/textured.vert",
+                    "fs":"assets/shaders/textured.frag"
+                }
+            },
+            "textures":{
+                "moon": "assets/textures/moon.jpg",
+                "grass": "assets/textures/grass_ground_d.jpg",
+                "wood": "assets/textures/wood.jpg",
+                "glass": "assets/textures/glass-panels.png",
+                "monkey": "assets/textures/monkey.png",
+                "tomb_texture": "assets/textures/egyptian.png"
+            },
+            "meshes":{
+                "cube": "assets/models/cube.obj",
+                "monkey": "assets/models/monkey.obj",
+                "plane": "assets/models/plane.obj",
+                "sphere": "assets/models/sphere.obj",
+                "tomb_mesh" :"assets/models/tombx.obj",
+                "box":"assets/models/box5.obj"
+            },
+            "samplers":{
+                "default":{},
+                "pixelated":{
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials":{
+                "metal":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [0.45, 0.4, 0.5, 1]
+                },
+                "glass":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        },
+                        "blending":{
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 1],
+                    "texture": "glass",
+                    "sampler": "pixelated"
+                },
+                "grass":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "grass",
+                    "sampler": "default"
+                },
+                "monkey":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "monkey",
+                    "sampler": "default"
+                },
+                "moon":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "moon",
+                    "sampler": "default"
+                },
+                "tomb_material":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": true
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    // "tint": [1, 1, 1, 1],
+                    "texture": "tomb_texture",
+                    "sampler": "default"
+                }
+            }
+        },
+        "world":[
+            {
+                "position": [0, 1.3, 0],
+                "components": [
+                    {
+                        "type": "Camera",
+                        "near": 0.01,
+                        "far": 10000
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [1, -1, -1],
+                        "rotation": [45, 45, 0],
+                        "scale": [0.1, 0.1, 1.0],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "cube",
+                                "material": "grass"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "scale":[1,1,1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "tomb_mesh",
+                        "material": "tomb_material"
+                    }
+                ],
+                "children":[
+                    {
+                        "position":[-2.9628,1.5,1.9909],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+
+                    },
+                    {
+                    "position":[-5.00784,2,-9.0061],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.7139,1.5,-1.74943],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.6368,1.5,-0.5509493],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.6762,1.5,0.883867],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.6762,1.5,2.342803],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.4306,1.325,1.90313],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.96114,1.44431,3.02634],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[12.315,1.5,4.26013],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[12.3675,1.5,5.47837],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.612,1.5,6.4557],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[12.359,1.5,7.6466],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[12.379,1.5,8.7808],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[12.071,1.5,9.7497],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[10.95,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[9.4963,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[8.125,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[6.885,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[5.661,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[4.593,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.3777,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[2.1211,1.5,10.436],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[1.1191,1.5,9.9266],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.6224,1.5,9.1176],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.6224,1.5,7.9965],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.6224,1.5,6.96604],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.6224,1.5,5.4845],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.6224,1.5,4.4769],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.6224,1.5,3.2564],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[1.5023,1.5,6.4779],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[1.3036,1.5,2.7313],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[2.5383,1.5,2.6745],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.5743,1.5,2.6745],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[4.7238,1.5,2.6745],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.8177,1.5,2.6745],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.8319,1.5,2.6745],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[8.9751,1.5,2.65084],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[10.075,1.5,2.65084],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[11.163,1.5,2.65084],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.9155,1.5,-7.4253],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.9155,1.5,-6.3],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.9155,1.5,-5.3297],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.9155,1.5,-4.223],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[3.9155,1.5,-3.235],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[4.9055,1.5,-3.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[5.927,1.5,-3.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[6.9662,1.5,-3.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.954,1.5,-3.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[9.061,1.5,-3.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[10.134,1.5,-3.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.852,1.5,-4.1035],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.852,1.5,-5.0913],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.852,1.5,-6.1812],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.852,1.5,-7.2541],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.852,1.5,-8.12],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.852,1.5,-9.1],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.034,1.5,-9.485],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-4.9536,1.5,-4.0274],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-6.893,1.5,-1.9696],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-2.9809,1.5,-1.954],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[1.0354,1.5,-1.954],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-2.1309,1.5,-6.05],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-6.0103,1.5,5.1737],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.020915,1.5,-4.0357],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-3.094,1.5,-6.8876],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.049047 ,1.5,-8.87754],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[1.0115,1.5,-1.9316],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-2.9327,1.5,-2.0542],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-6.9382,1.5,1.9105],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-3.0349,1.5,2.0331],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[1.9925,1.5,-5.6305],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-2.9572,1.5,-5.8431],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[-2.0253,1.5,-6.9466],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[0.86849,1.5,1.7838],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[4.8905,1.5,1.9064],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "position":[7.9313,1.5,1.8328],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "box",
+                                "material": "glass"
+    
+                            }
+                        ]
+                    }
+                ]
+            }
+            //    {
+               
+            //         "components":[
+            //             {
+            //                 "type": "Mesh Renderer",
+            //                 "mesh": "box",
+            //                 "material": "glass"
+
+            //             }
+            //         ]
+            //     }
+        ]
+    }
+}
