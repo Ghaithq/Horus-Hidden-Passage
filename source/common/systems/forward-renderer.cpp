@@ -121,14 +121,61 @@ namespace our {
         }
     }
 
+    void ForwardRenderer::addLight(our::ShaderProgram* program)
+    {
+        int light_index = 0;
+        
+        for(auto& light:lightSources)
+        {
+            std::string prefix = "lights[" + std::to_string(light_index) + "].";
+            program->set(prefix + "diffuse", light->diffuse);
+            program->set(prefix + "specular", light->specular);
+            program->set(prefix + "ambient", light->ambient);
+            program->set(prefix + "type", static_cast<int>(light->lightType));
+            program->set(prefix + "color", (light->color));
+            switch (light->lightType) {
+                case LightType::DIRECTIONAL:
+                    program->set(prefix + "direction", glm::normalize(light->direction));
+                    break;
+                case LightType::POINT:
+                    
+                    program->set(prefix + "position", light->position);
+                    program->set(prefix + "attenuation_constant", light->attenuation.constant);
+                    program->set(prefix + "attenuation_linear", light->attenuation.linear);
+                    program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
+                    break;
+                case LightType::SPOT:
+                    program->set(prefix + "position", light->position);
+                    program->set(prefix + "direction", glm::normalize(light->direction));
+                    program->set(prefix + "attenuation_constant", light->attenuation.constant);
+                    program->set(prefix + "attenuation_linear", light->attenuation.linear);
+                    program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
+                    program->set(prefix + "inner_angle", light->spot_angle.inner);
+                    program->set(prefix + "outer_angle", light->spot_angle.outer);
+                    break;
+            }
+            light_index++;
+
+
+        }
+        program->set("light_count",light_index);
+    }
+
     void ForwardRenderer::render(World* world){
         // First of all, we search for a camera and for all the mesh renderers
+        lightSources.clear();
         CameraComponent* camera = nullptr;
         opaqueCommands.clear();
         transparentCommands.clear();
         for(auto entity : world->getEntities()){
             // If we hadn't found a camera yet, we look for a camera in this entity
             if(!camera) camera = entity->getComponent<CameraComponent>();
+            if (const auto light = entity->getComponent<LightComponent>(); light)
+            {
+                lightSources.push_back(light);
+                light->position=glm::vec3(light->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
+                
+            }
             // If this entity has a mesh renderer component
             if(auto meshRenderer = entity->getComponent<MeshRendererComponent>(); meshRenderer){
                 // We construct a command from it
@@ -185,10 +232,26 @@ namespace our {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         //TODO: (Req 9) Draw all the opaque commands
+        glm::vec3 cameraPos = camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto opaqueCommand:opaqueCommands)
         {
             opaqueCommand.material->setup();
+            if(dynamic_cast<LitMaterial*>(opaqueCommand.material))
+            {
+                
+                addLight(opaqueCommand.material->shader);
+                opaqueCommand.material->shader->set("object_to_world",opaqueCommand.localToWorld);
+                opaqueCommand.material->shader->set("object_to_world_inv_transpose",glm::transpose(glm::inverse(opaqueCommand.localToWorld)));
+                opaqueCommand.material->shader->set("view_projection",glm::transpose(glm::inverse(VP)));
+                opaqueCommand.material->shader->set("camera_position", cameraPos);
+                // opaqueCommand.material->shader->set("material.diffuse", ((LitMaterial*)opaqueCommand.material)->diffuse);
+                opaqueCommand.material->shader->set("material.diffuse", ((LitMaterial*)opaqueCommand.material)->diffuse);
+                opaqueCommand.material->shader->set("material.specular", ((LitMaterial*)opaqueCommand.material)->specular);
+                opaqueCommand.material->shader->set("material.ambient", ((LitMaterial*)opaqueCommand.material)->ambient);
+                opaqueCommand.material->shader->set("material.shininess",((LitMaterial*)opaqueCommand.material)->shininess);
+            }
+
             opaqueCommand.material->shader->set("transform",VP*opaqueCommand.localToWorld);
             opaqueCommand.mesh->draw();
         }
@@ -218,11 +281,32 @@ namespace our {
             //TODO: (Req 10) draw the sky sphere
             skySphere->draw();
         }
+
+
+        
         //TODO: (Req 9) Draw all the transparent commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto transparentCommand:transparentCommands)
         {
+            // addLight(transparentCommand.material->shader);
+            // transparentCommand.material->shader->set("material.diffuse",transparentCommand.material->diffuse);
+            // transparentCommand.material->shader->set("material.specular",transparentCommand.material->specular);
+            // transparentCommand.material->shader->set("material.ambient",transparentCommand.material->ambient);
+            // transparentCommand.material->shader->set("material.shininess",transparentCommand.material->shininess);
             transparentCommand.material->setup();
+            if (dynamic_cast<LitMaterial*>(transparentCommand.material))
+            {
+
+                //addLight(transparentCommand.material->shader);
+                transparentCommand.material->shader->set("object_to_world", transparentCommand.localToWorld);
+                transparentCommand.material->shader->set("object_to_world_inv_transpose", glm::transpose(glm::inverse(transparentCommand.localToWorld)));
+                transparentCommand.material->shader->set("view_projection", glm::transpose(glm::inverse(VP)));
+                transparentCommand.material->shader->set("camera_position", cameraPos);
+                transparentCommand.material->shader->set("material.diffuse", camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
+                transparentCommand.material->shader->set("material.specular", ((LitMaterial*)transparentCommand.material)->specular);
+                transparentCommand.material->shader->set("material.ambient", ((LitMaterial*)transparentCommand.material)->ambient);
+                transparentCommand.material->shader->set("material.shininess", ((LitMaterial*)transparentCommand.material)->shininess);
+            }
             transparentCommand.material->shader->set("transform", VP*transparentCommand.localToWorld);
             transparentCommand.mesh->draw();
         }

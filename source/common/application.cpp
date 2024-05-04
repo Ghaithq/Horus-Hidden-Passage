@@ -253,7 +253,7 @@ int our::Application::run(int run_for_frames) {
         return -1;
     }
 
-    ma_engine_play_sound(&engine, ".\\assets\\audios\\el_doc.wav", NULL);
+    //ma_engine_play_sound(&engine, ".\\assets\\audios\\el_doc.wav", NULL);
 
     //Game loop
     while(!glfwWindowShouldClose(window)){
