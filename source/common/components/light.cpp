@@ -16,6 +16,7 @@ namespace our {
         specular=data.value<glm::vec3>("specular", specular);
         color = data.value("color", color);
         ambient=data.value("ambient", ambient);
+        direction = data.value("direction", direction);
         diffuse=data.value("diffuse", diffuse);
         spot_angle.inner=data.value("angle_inner",0.f);
         spot_angle.outer=data.value("angle_outer",0.f);

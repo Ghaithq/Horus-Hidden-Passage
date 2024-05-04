@@ -172,8 +172,11 @@ namespace our {
             if(!camera) camera = entity->getComponent<CameraComponent>();
             if (const auto light = entity->getComponent<LightComponent>(); light)
             {
+                //light->position=glm::vec3(light->getOwner()->getLocalToWorldMatrix() * glm::vec4(light->getOwner()->localTransform.position,1));
+                
+                if(light->lightType!=LightType::DIRECTIONAL)
+                    light->position = glm::vec3(light->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
                 lightSources.push_back(light);
-                light->position=glm::vec3(light->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
                 
             }
             // If this entity has a mesh renderer component
@@ -243,7 +246,7 @@ namespace our {
                 addLight(opaqueCommand.material->shader);
                 opaqueCommand.material->shader->set("object_to_world",opaqueCommand.localToWorld);
                 opaqueCommand.material->shader->set("object_to_world_inv_transpose",glm::transpose(glm::inverse(opaqueCommand.localToWorld)));
-                opaqueCommand.material->shader->set("view_projection",glm::transpose(glm::inverse(VP)));
+                opaqueCommand.material->shader->set("view_projection",VP);
                 opaqueCommand.material->shader->set("camera_position", cameraPos);
                 // opaqueCommand.material->shader->set("material.diffuse", ((LitMaterial*)opaqueCommand.material)->diffuse);
                 opaqueCommand.material->shader->set("material.diffuse", ((LitMaterial*)opaqueCommand.material)->diffuse);

@@ -159,7 +159,7 @@
                         }
                     },
                     "tint":[1,1,1,1],
-                    "texture":"grass",
+                    "texture":"wood",
                     "sampler": "default",
                     "diffuse":[0.2,0.2,0.2],
                     "specular":[0.2,0.2,0.2],
@@ -182,7 +182,7 @@
                     "sampler": "default",
                     "diffuse":[0.2,0.2,0.2],
                     "specular":[0.2,0.2,0.2],
-                    "ambient":[0.1,0.1,0.1],
+                    "ambient":[0,0,0],
                     "shininess":0.2
                 }
             }
@@ -214,17 +214,20 @@
                     }
                 ]
             },
+            
             {
-                // "rotation": [-90, 0, 0],
+                "rotation": [-90, 0, 0],
+                "scale":[3,3,3],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "cube",
-                        "material": "lit_cube"
+                        "mesh": "plane",
+                        "material": "lit_plane"
                    }
                     
                 ]
             },
+            
             {
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
@@ -263,10 +266,13 @@
                     "diffuse":[1,1,1],
                     "specular":[1,1,1],
                     "ambient":[3, 3, 3],
-                    "light_type":"point",
+                    "light_type":"spot",
                     "color":[1,1,1],
-                    "attenuation": [1,0,0]
-                    
+                    "attenuation": [1,0,0],
+                    "angle_inner":0.5,
+                    "angle_outer":0.7,
+                    "direction":[0,-1,0]
+
     
                 }
             ]
