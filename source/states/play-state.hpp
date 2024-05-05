@@ -10,6 +10,8 @@
 #include "components/mesh-renderer.hpp"
 #include "components/camera.hpp"
 #include "components/free-camera-controller.hpp"
+#include "components/movement.hpp"
+
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
@@ -43,6 +45,7 @@ class Playstate : public our::State
         pickUpText->localTransform.position.y = -10;
         cameraEntity = getCamera();
         initializeObjectiveItems();
+        initializeCounterDisplay();
     }
 
     void onDraw(double deltaTime) override
@@ -52,8 +55,8 @@ class Playstate : public our::State
         cameraController.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
         this->checkItemFound(cameraEntity->localTransform.position);
+        this->checkPlayerWin();
         renderer.render(&world);
-
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
 
@@ -82,11 +85,17 @@ private:
     // Text that tells the player to pick up the item
     our::Entity *pickUpText = NULL;
     // positions of the items to be picked up
-    std::vector<our::Entity*> objectiveItems;
+    std::vector<our::Entity *> objectiveItems;
     // To get the position of the player
     our::Entity *cameraEntity = NULL;
+    // Counter entities kept in a list
+    std::vector<our::Entity *> counterDisplay;
     // The count of items collected so far
     int itemCount = 0;
+    // Max. number of items
+    const int MAX_ITEMS=5;
+    // Pointer to the exit gate
+    our::Entity* gate=nullptr;
 
     our::Entity *getCamera()
     {
@@ -121,7 +130,7 @@ private:
     void checkItemFound(const glm::vec3 &position)
     {
         const float minDistance = 0.75f;
-        our::Entity* foundEntity=nullptr;
+        our::Entity *foundEntity = nullptr;
         for (auto entity : objectiveItems)
         {
             if (abs(position.x - entity->localTransform.position.x) + abs(position.z - entity->localTransform.position.z) <= minDistance)
@@ -135,10 +144,37 @@ private:
         {
             foundEntity->localTransform.position.y = -10;
             foundEntity->localTransform.position.x = -100;
-            itemCount++;
-            std::cout<<itemCount<<std::endl;
+            counterDisplay[itemCount]->localTransform.position.z = 1;
+            counterDisplay[++itemCount]->localTransform.position.z = -1.5;
+            if(itemCount==MAX_ITEMS)
+                {
+                   
+                    for (auto entity : world.getEntities())
+                    {
+                        if(entity->name=="gate")
+                        {
+                            gate=entity;
+                            break;
+                        }
+                    }
+                    gate->getComponent<our::MovementComponent>()->linearVelocity={0,1,0};
+                }
         }
         else if (!foundEntity)
             pickUpText->localTransform.position.y = -10;
+    }
+    void initializeCounterDisplay()
+    {
+        counterDisplay.reserve(MAX_ITEMS+1);
+        for (auto entity : world.getEntities())
+            if (entity->name.substr(0, 7) == "counter")
+                counterDisplay[entity->name[7] - '0'] = entity;
+    }
+    void checkPlayerWin(){
+        float x=cameraEntity->localTransform.position.x;
+        float z=cameraEntity->localTransform.position.z;
+        if(itemCount==MAX_ITEMS && x<=-10.45 && z<=1.2 && z>=-1.2 && gate->localTransform.position.y>=4.2)
+            getApp()->changeState("menu");
+
     }
 };
