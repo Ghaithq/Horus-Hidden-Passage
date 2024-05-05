@@ -197,7 +197,9 @@
                     {
                         "type": "Free Camera Controller"
                     }
+                    
                 ],
+
                 "children": [
                     {
                         "position": [1, -1, -1],
@@ -211,35 +213,54 @@
                             }
                     
                         ]
+                    },
+                    {
+                        "components":[
+                            {
+                            "type":"Light",
+                            "diffuse":[1,1,1],
+                            "specular":[1,1,1],
+                            "ambient":[3, 3, 3],
+                            "light_type":"point",
+                            "color":[1,1,1],
+                            "attenuation": [0.2,0.2,0],
+                            "angle_inner":0.3,
+                            "angle_outer":0.4,
+                            "direction":[0,0,-1]
+                        }
+                        ]
                     }
                 ]
             },
             
             {
-                "rotation": [-90, 0, 0],
-                "scale":[3,3,3],
+                "scale":[5,5,5],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "lit_plane"
-                   }
+                        "mesh": "monkey",
+                        "material": "lit_monkey"
+                   },
+                   {
+                    "type": "Movement",
+                    "angularVelocity": [0, 90, 0]
+                    }
                     
                 ]
             },
             
-            {
-                "position": [0, -1, 0],
-                "rotation": [-90, 0, 0],
-                "scale": [10, 10, 1],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "grass"
-                    }
-                ]
-            },
+            // {
+            //     "position": [0, -1, 0],
+            //     "rotation": [-90, 0, 0],
+            //     "scale": [10, 10, 1],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "plane",
+            //             "material": "grass"
+            //         }
+            //     ]
+            // },
             
             // {
             //     //[horizental,vertical,depth]
@@ -259,22 +280,16 @@
             //     ]
             // },
             {
-                "position":[0, 4, 0],
+                "position":[3, 0, 0],
+                "scale":[0.2,0.2,0.2],
+                
                 "components":[
+                    
                 {
-                    "type":"Light",
-                    "diffuse":[1,1,1],
-                    "specular":[1,1,1],
-                    "ambient":[3, 3, 3],
-                    "light_type":"spot",
-                    "color":[1,1,1],
-                    "attenuation": [1,0,0],
-                    "angle_inner":0.5,
-                    "angle_outer":0.7,
-                    "direction":[0,-1,0]
-
-    
-                }
+                    "type": "Mesh Renderer",
+                    "mesh": "monkey",
+                    "material": "monkey"
+               }
             ]
             }
             // {

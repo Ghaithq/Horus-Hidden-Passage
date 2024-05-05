@@ -146,7 +146,7 @@ namespace our {
                     break;
                 case LightType::SPOT:
                     program->set(prefix + "position", light->position);
-                    program->set(prefix + "direction", glm::normalize(light->direction));
+                    program->set(prefix + "direction", glm::normalize(glm::vec3((light->getOwner()->getLocalToWorldMatrix() * glm::vec4(light->direction, 0)))));
                     program->set(prefix + "attenuation_constant", light->attenuation.constant);
                     program->set(prefix + "attenuation_linear", light->attenuation.linear);
                     program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
@@ -173,7 +173,7 @@ namespace our {
             if (const auto light = entity->getComponent<LightComponent>(); light)
             {
                 //light->position=glm::vec3(light->getOwner()->getLocalToWorldMatrix() * glm::vec4(light->getOwner()->localTransform.position,1));
-                
+               
                 if(light->lightType!=LightType::DIRECTIONAL)
                     light->position = glm::vec3(light->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
                 lightSources.push_back(light);
