@@ -1,8 +1,8 @@
 {
-    "start-scene": "menu",
+    "start-scene": "play",
     "window":
     {
-        "title":"Horus Hidden Passage",
+        "title":"Default Game Window",
         "size":{
             "width":1280,
             "height":720
@@ -31,7 +31,10 @@
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
-                "tomb_texture": "assets/textures/blue.jpg"
+                "tomb_texture": "assets/textures/dark.jpg",
+                "gold": "assets/textures/gold.jpg",
+                "egyptian": "assets/textures/egyptian.png",
+                "floor_tile":"assets/textures/Floor_tile_basic_diff.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -39,7 +42,20 @@
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "tomb_mesh" :"assets/models/tomb.obj",
-                "box":"assets/models/box.obj"
+                "box":"assets/models/box.obj",
+                "one":"assets/models/numerouno.obj",
+                "puzzle":"assets/models/puzzle2.obj",
+                "key":"assets/models/Key.obj",
+                "eye":"assets/models/Eye.obj",
+                "scale":"assets/models/Scale.obj",
+                "chain":"assets/models/Chain.obj",
+                "staff":"assets/models/Staff.obj",
+                "necklace":"assets/models/Necklace.obj",
+                "all":"assets/models/All.obj",
+                "textE":"assets/models/pickupText.obj",
+                "floor":"assets/models/floor.obj"
+
+                
             },
             "samplers":{
                 "default":{},
@@ -92,7 +108,7 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [255, 255, 255, 1],
                     "texture": "grass",
                     "sampler": "default"
                 },
@@ -137,10 +153,43 @@
                             "enabled": true
                         }
                     },
-                    // "tint": [1, 1, 1, 1],
+                    "tint": [0.5, 0.5, 0.5, 1],
                     "texture": "tomb_texture",
                     "sampler": "default"
+                },
+                "egyptian":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                        
+                    },
+                    "tint": [0.2, 0.2, 0.2, 1],
+                    "texture": "egyptian",
+                    "sampler": "pixelated"
+                },
+                "floor":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                        
+                    },
+                    // "tint": [1, 1, 1, 1],
+                    "texture": "floor_tile",
+                    "sampler": "pixelated"
                 }
+
             }
         },
         "world":[
@@ -158,17 +207,31 @@
                 ],
                 "children": [
                     {
-                        "position": [1, -1, -1],
-                        "rotation": [45, 45, 0],
-                        "scale": [0.1, 0.1, 1.0],
+                        "position": [-1, 1, -1],
+                        "rotation": [0, 0, 0],
+                        "scale": [0.5, 0.5, 0.5],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "cube",
+                                "mesh": "monkey",
+                                "material": "grass"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "textE",
+                        "position": [-0.5, 1, -1.2],
+                        "rotation": [0, 0, 0],
+                        "scale": [0.15, 0.15, 0.15],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "textE",
                                 "material": "grass"
                             }
                         ]
                     }
+                    
                 ]
             },
             {
@@ -177,10 +240,21 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "tomb_mesh",
-                        "material": "tomb_material"
+                        "material": "egyptian"
                     }
                 ],
                 "children":[
+                    {
+                        "position":[0,0.2,0],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "floor",
+                                "material": "floor"
+    
+                            }
+                        ]
+                    },
                     {
                         "position":[-2.9628,1.5,1.9909],
                         "components":[
@@ -1017,7 +1091,85 @@
     
                             }
                         ]
+                    },
+                    {
+                        "name": "objectiveItem",
+                        "position":[11.9926,1,7.0548],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "staff",
+                                "material": "egyptian"
+    
+                            }
+                        ]
+
+                    },
+                    {
+                        "name": "objectiveItem",
+                        "position":[4.3209,1,-3.66889],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "scale",
+                                "material": "egyptian"
+    
+                            }
+                        ]
+
+                    },
+                    {
+                        "name": "objectiveItem",
+                        "position":[-10.5,1,-6.8861],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "chain",
+                                "material": "egyptian"
+    
+                            }
+                        ]
+
+                    },
+                    {
+                        "name": "objectiveItem",
+                        "position":[-4.90488,1,-9.79381],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "necklace",
+                                "material": "egyptian"
+    
+                            }
+                        ]
+                    },
+                    {
+                        "name": "objectiveItem",
+                        "position":[9.01098, 1, 1.92645],
+                        "scale":[0.4,0.4,0.4],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "key",
+                                "material": "egyptian"
+    
+                            }
+                        ]
+
                     }
+                    // {
+                    //     "position":[-6,1.5,0],
+                    //     "components":[
+                    //         {
+                    //             "type": "Mesh Renderer",
+                    //             "mesh": "key",
+                    //             "material": "egyptian"
+    
+                    //         }
+                    //     ]
+
+                    // }
+
                 ]
             }
             //    {
