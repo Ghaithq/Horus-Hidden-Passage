@@ -165,7 +165,7 @@ private:
     }
     void initializeCounterDisplay()
     {
-        counterDisplay.reserve(MAX_ITEMS+1);
+        counterDisplay.resize(MAX_ITEMS+1);
         for (auto entity : world.getEntities())
             if (entity->name.substr(0, 7) == "counter")
                 counterDisplay[entity->name[7] - '0'] = entity;
