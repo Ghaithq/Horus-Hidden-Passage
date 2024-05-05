@@ -10,6 +10,8 @@ vendor/
 Testing/
 CMakeFiles/
 screenshots/
+assets/
+errors/
 
 # imgui saved state
 imgui.ini

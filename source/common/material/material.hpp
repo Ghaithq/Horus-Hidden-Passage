@@ -28,9 +28,28 @@ namespace our {
         virtual void deserialize(const nlohmann::json& data);
     };
 
+    class LitMaterial :public Material {
+    public:
+        glm::vec3 diffuse, specular, ambient;
+        float shininess;
+
+        virtual void setup() const;
+        // This function read a material from a json object
+        virtual void deserialize(const nlohmann::json& data);
+
+    };
+
     // This material adds a uniform for a tint (a color that will be sent to the shader)
     // An example where this material can be used is when the whole object has only color which defined by tint
     class TintedMaterial : public Material {
+    public:
+        glm::vec4 tint;
+
+        void setup() const override;
+        void deserialize(const nlohmann::json& data) override;
+    };
+
+    class LitTintedMaterial : public LitMaterial {
     public:
         glm::vec4 tint;
 
@@ -52,6 +71,15 @@ namespace our {
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;
     };
+    class LitTexturedMaterial : public LitTintedMaterial {
+    public:
+        Texture2D* texture;
+        Sampler* sampler;
+        float alphaThreshold;
+
+        void setup() const override;
+        void deserialize(const nlohmann::json& data) override;
+    };
 
     // This function returns a new material instance based on the given type
     inline Material* createMaterialFromType(const std::string& type){
@@ -59,6 +87,8 @@ namespace our {
             return new TintedMaterial();
         } else if(type == "textured"){
             return new TexturedMaterial();
+        } else if (type == "lit") {
+            return new LitTexturedMaterial();
         } else {
             return new Material();
         }
