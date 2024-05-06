@@ -133,9 +133,9 @@ namespace our {
             program->set(prefix + "ambient", light->ambient);
             program->set(prefix + "type", static_cast<int>(light->lightType));
             program->set(prefix + "color", (light->color));
+            program->set(prefix + "direction", glm::normalize(glm::vec3((light->getOwner()->getLocalToWorldMatrix() * glm::vec4(light->direction, 0)))));
             switch (light->lightType) {
                 case LightType::DIRECTIONAL:
-                    program->set(prefix + "direction", glm::normalize(light->direction));
                     break;
                 case LightType::POINT:
                     
@@ -146,7 +146,6 @@ namespace our {
                     break;
                 case LightType::SPOT:
                     program->set(prefix + "position", light->position);
-                    program->set(prefix + "direction", glm::normalize(light->direction));
                     program->set(prefix + "attenuation_constant", light->attenuation.constant);
                     program->set(prefix + "attenuation_linear", light->attenuation.linear);
                     program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
