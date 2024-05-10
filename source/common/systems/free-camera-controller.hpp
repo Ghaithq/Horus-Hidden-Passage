@@ -141,7 +141,7 @@ namespace our
                 return true;
             for (auto entity : world->getEntities())
             {
-                if (entity->getComponent<CameraComponent>() || !entity->getComponent<MeshRendererComponent>()->material->transparent)
+                if (entity->getComponent<CameraComponent>() || entity->getComponent<LightComponent>() ||!entity->getComponent<MeshRendererComponent>()->material->transparent)
                     continue;
                 glm::vec3 entityPosition = entity->localTransform.position;
                 if ((abs(position.x - entityPosition.x) + abs(position.z - entityPosition.z)) <= minDistance)
