@@ -9,6 +9,7 @@
 #include <queue>
 #include <tuple>
 #include <filesystem>
+#include <windows.h>
 
 #include <flags/flags.h>
 

@@ -7,6 +7,8 @@
 
 #include "states/menu-state.hpp"
 #include "states/play-state.hpp"
+#include "states/win-state.hpp"
+#include "states/loading-state.hpp"
 #include "states/shader-test-state.hpp"
 #include "states/mesh-test-state.hpp"
 #include "states/transform-test-state.hpp"
@@ -45,6 +47,8 @@ int main(int argc, char** argv) {
     // Register all the states of the project in the application
     app.registerState<Menustate>("menu");
     app.registerState<Playstate>("play");
+    app.registerState<Winstate>("win");
+    app.registerState<Loadingstate>("loading");
     app.registerState<ShaderTestState>("shader-test");
     app.registerState<MeshTestState>("mesh-test");
     app.registerState<TransformTestState>("transform-test");

@@ -130,7 +130,7 @@ namespace our
                 newPosition.z -= right.z * (deltaTime * current_sensitivity.x);
             }
 
-            std::cout << '(' << position.x << ',' << position.z << ')' << std::endl;
+            //std::cout << '(' << position.x << ',' << position.z << ')' << std::endl;
             if (!(newPosition == position) && !checkCollision(world, newPosition))
                 position = newPosition;
         }

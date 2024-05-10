@@ -46,6 +46,7 @@ class Playstate : public our::State
         cameraEntity = getCamera();
         initializeObjectiveItems();
         initializeCounterDisplay();
+        itemCount = 0;
     }
 
     void onDraw(double deltaTime) override
@@ -174,7 +175,6 @@ private:
         float x=cameraEntity->localTransform.position.x;
         float z=cameraEntity->localTransform.position.z;
         if(itemCount==MAX_ITEMS && x<=-10.45 && z<=1.2 && z>=-1.2 && gate->localTransform.position.y>=4.2)
-            getApp()->changeState("menu");
-
+            getApp()->changeState("win");
     }
 };
