@@ -10,13 +10,13 @@
 #include <functional>
 #include <array>
 
-
-class Loadingstate : public our::State {
+class Losestate : public our::State {
 
     our::TexturedMaterial* screenMaterial;
     our::TintedMaterial* highlightMaterial;
     our::Mesh* rectangle;
     float time;
+    std::array<Button, 2> buttons;
 
     void onInitialize() override {
         screenMaterial = new our::TexturedMaterial();
@@ -24,7 +24,7 @@ class Loadingstate : public our::State {
         screenMaterial->shader->attach("assets/shaders/textured.vert", GL_VERTEX_SHADER);
         screenMaterial->shader->attach("assets/shaders/textured.frag", GL_FRAGMENT_SHADER);
         screenMaterial->shader->link();
-        screenMaterial->texture = our::texture_utils::loadImage("assets/textures/loading_screen.jpg");
+        screenMaterial->texture = our::texture_utils::loadImage("assets/textures/lose_screen.jpg");
         screenMaterial->tint = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
 
         highlightMaterial = new our::TintedMaterial();
@@ -48,9 +48,36 @@ class Loadingstate : public our::State {
             });
 
         time = 0;
+
+        buttons[0].position = { 100.0f, 220.0f };
+        buttons[0].size = { 330.0f, 60.0f };
+        buttons[0].action = [this]() {this->getApp()->changeState("play"); };
+
+        buttons[1].position = { 100.0f, 320.0f };
+        buttons[1].size = { 200.0f, 60.0f };
+        buttons[1].action = [this]() {this->getApp()->close(); };
     }
 
     void onDraw(double deltaTime) override {
+        auto& keyboard = getApp()->getKeyboard();
+
+        if (keyboard.justPressed(GLFW_KEY_SPACE)) {
+            getApp()->changeState("play");
+        }
+        else if (keyboard.justPressed(GLFW_KEY_ESCAPE)) {
+            getApp()->close();
+        }
+
+        auto& mouse = getApp()->getMouse();
+        glm::vec2 mousePosition = mouse.getMousePosition();
+
+        if (mouse.justPressed(0)) {
+            for (auto& button : buttons) {
+                if (button.isInside(mousePosition))
+                    button.action();
+            }
+        }
+
         glm::ivec2 size = getApp()->getFrameBufferSize();
         glViewport(0, 0, size.x, size.y);
         glm::mat4 VP = glm::ortho(0.0f, (float)size.x, (float)size.y, 0.0f, 1.0f, -1.0f);
@@ -61,10 +88,15 @@ class Loadingstate : public our::State {
         screenMaterial->setup();
         screenMaterial->shader->set("transform", VP * M);
         rectangle->draw();
-        
-        // wait for 2 seconds to load the loading screen
-        if (time > 2.0f)
-            getApp()->changeState("play");
+
+        for (auto& button : buttons) {
+            if (button.isInside(mousePosition)) {
+                highlightMaterial->setup();
+                highlightMaterial->shader->set("transform", VP * button.getLocalToWorld());
+                rectangle->draw();
+            }
+        }
+
     }
 
     void onDestroy() override {

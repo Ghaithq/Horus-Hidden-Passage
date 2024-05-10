@@ -21,6 +21,7 @@ class Playstate : public our::State
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
+    float time;
 
     void onInitialize() override
     {
@@ -47,6 +48,7 @@ class Playstate : public our::State
         initializeObjectiveItems();
         initializeCounterDisplay();
         itemCount = 0;
+        time = 0;
     }
 
     void onDraw(double deltaTime) override
@@ -66,6 +68,7 @@ class Playstate : public our::State
             // If the escape  key is pressed in this frame, go to the play state
             getApp()->changeState("menu");
         }
+        time += (float)deltaTime;
     }
 
     void onDestroy() override
@@ -176,5 +179,7 @@ private:
         float z=cameraEntity->localTransform.position.z;
         if(itemCount==MAX_ITEMS && x<=-10.45 && z<=1.2 && z>=-1.2 && gate->localTransform.position.y>=4.2)
             getApp()->changeState("win");
+        if(time >= 150)
+			getApp()->changeState("lose");
     }
 };
