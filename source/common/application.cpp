@@ -100,8 +100,9 @@ void GLAPIENTRY opengl_callback(GLenum source, GLenum type, GLuint id, GLenum se
             _severity = "UNKNOWN"; break;
     }
 
-    std::cout << "OpenGL Debug Message " << id << " (type: " << _type << ") of " << _severity
-    << " raised from " << _source << ": " << message << std::endl;
+    if(id != 131185 && id != 1282) // Ignore these two messages
+        std::cout << "OpenGL Debug Message " << id << " (type: " << _type << ") of " << _severity
+        << " raised from " << _source << ": " << message << std::endl;
 }
 
 void our::Application::configureOpenGL() {
@@ -254,7 +255,7 @@ int our::Application::run(int run_for_frames) {
         return -1;
     }
 
-    // ma_engine_play_sound(&engine, ".\\assets\\audios\\el_doc.wav", NULL);
+     ma_engine_play_sound(&engine, ".\\assets\\audios\\tomb_long.mp3", NULL);
 
     //Game loop
     while(!glfwWindowShouldClose(window)){

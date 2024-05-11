@@ -10,10 +10,10 @@
         "fullscreen": false
     },
     "scene": {
-        "renderer":{
-            "sky": "assets/textures/sky.jpg",
-            "postprocess": "assets/shaders/postprocess/vignette.frag"
-        },
+      "renderer": {
+        "sky": "assets/textures/sky.jpg",
+        "postprocess": "assets/shaders/postprocess/blur.frag"
+      },
         "assets":{
             "shaders":{
                 "tinted":{
