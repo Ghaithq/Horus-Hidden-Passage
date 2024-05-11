@@ -125,35 +125,38 @@ namespace our {
     {
         int light_index = 0;
         
+        std::string prefix = "lights[" + std::to_string(light_index) + "].";
         for(auto& light:lightSources)
         {
-            std::string prefix = "lights[" + std::to_string(light_index) + "].";
-            program->set(prefix + "diffuse", light->diffuse);
-            program->set(prefix + "specular", light->specular);
-            program->set(prefix + "ambient", light->ambient);
-            program->set(prefix + "type", static_cast<int>(light->lightType));
-            program->set(prefix + "color", (light->color));
-            program->set(prefix + "direction", glm::normalize(glm::vec3((light->getOwner()->getLocalToWorldMatrix() * glm::vec4(light->direction, 0)))));
-            switch (light->lightType) {
-                case LightType::DIRECTIONAL:
-                    break;
-                case LightType::POINT:
-                    
-                    program->set(prefix + "position", light->position);
-                    program->set(prefix + "attenuation_constant", light->attenuation.constant);
-                    program->set(prefix + "attenuation_linear", light->attenuation.linear);
-                    program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
-                    break;
-                case LightType::SPOT:
-                    program->set(prefix + "position", light->position);
-                    program->set(prefix + "attenuation_constant", light->attenuation.constant);
-                    program->set(prefix + "attenuation_linear", light->attenuation.linear);
-                    program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
-                    program->set(prefix + "inner_angle", light->spot_angle.inner);
-                    program->set(prefix + "outer_angle", light->spot_angle.outer);
-                    break;
+            if(light->enabled){
+                program->set(prefix + "diffuse", light->diffuse);
+                program->set(prefix + "specular", light->specular);
+                program->set(prefix + "ambient", light->ambient);
+                program->set(prefix + "type", static_cast<int>(light->lightType));
+                program->set(prefix + "color", (light->color));
+                program->set(prefix + "direction", glm::normalize(glm::vec3((light->getOwner()->getLocalToWorldMatrix() * glm::vec4(light->direction, 0)))));
+                switch (light->lightType) {
+                    case LightType::DIRECTIONAL:
+                        break;
+                    case LightType::POINT:
+                        
+                        program->set(prefix + "position", light->position);
+                        program->set(prefix + "attenuation_constant", light->attenuation.constant);
+                        program->set(prefix + "attenuation_linear", light->attenuation.linear);
+                        program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
+                        break;
+                    case LightType::SPOT:
+                        program->set(prefix + "position", light->position);
+                        program->set(prefix + "attenuation_constant", light->attenuation.constant);
+                        program->set(prefix + "attenuation_linear", light->attenuation.linear);
+                        program->set(prefix + "attenuation_quadratic", light->attenuation.quadratic);
+                        program->set(prefix + "inner_angle", light->spot_angle.inner);
+                        program->set(prefix + "outer_angle", light->spot_angle.outer);
+                        break;
+                }
+                light_index++;
+
             }
-            light_index++;
 
 
         }

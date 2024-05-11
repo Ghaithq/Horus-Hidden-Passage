@@ -334,7 +334,9 @@
                             "ambient":[1, 1, 1],
                             "light_type":"point",
                             "color":[1,0.5,0.8],
-                            "attenuation": [0,0.15,0]
+                            "attenuation": [0,0.15,0],
+                            "enabled":true
+
                             // "angle_inner":0.7,
                             // "angle_outer":0.8,
                             // "direction":[0,0,-1]

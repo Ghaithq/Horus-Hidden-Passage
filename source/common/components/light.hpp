@@ -20,6 +20,7 @@ namespace our {
         glm::vec3 color;
         glm::vec3 direction;
         glm::vec3 position;
+        bool enabled=true;
         
         struct {
             float constant, linear, quadratic;

@@ -7,6 +7,7 @@ namespace our {
     void LightComponent::deserialize(const nlohmann::json& data){
         if(!data.is_object()) return;
         std::string type_name = data.value("light_type", "point");
+        enabled=data.value("enabled",true);
         if(type_name =="directional")
             lightType=LightType::DIRECTIONAL;
         else if(type_name =="spot")
