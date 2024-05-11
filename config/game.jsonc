@@ -11,8 +11,8 @@
     },
     "scene": {
       "renderer": {
-        "sky": "assets/textures/sky.jpg",
-        "postprocess": "assets/shaders/postprocess/blur.frag"
+        "sky": "assets/textures/sky.jpg"
+        //"postprocess": "assets/shaders/postprocess/blur.frag"
       },
         "assets":{
             "shaders":{
@@ -38,7 +38,9 @@
                 "tomb_texture": "assets/textures/dark.jpg",
                 "gold": "assets/textures/gold.jpg",
                 "egyptian": "assets/textures/egyptian.png",
-                "floor_tile":"assets/textures/Floor_tile_basic_diff.png"
+                "floor_tile":"assets/textures/Floor_tile_basic_diff.png",
+                "brain":"assets/textures/brain.png"
+                
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -64,8 +66,8 @@
                 "3_5":"assets/models/3_5.obj",
                 "4_5":"assets/models/4_5.obj",
                 "5_5":"assets/models/5_5.obj",
-                "tomb_gate":"assets/models/tomb_gate.obj"
-
+                "tomb_gate":"assets/models/tomb_gate.obj",
+                "brain":"assets/models/brain.obj"
                 
             },
             "samplers":{
@@ -136,6 +138,21 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "monkey",
+                    "sampler": "default"
+                },
+                "brain":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "tomb_texture",
                     "sampler": "default"
                 },
                 "itemMaterial":{
@@ -321,6 +338,19 @@
                                 "type": "Mesh Renderer",
                                 "mesh": "0_5",
                                 "material": "grass"
+                            }
+                        ]
+                    }, 
+                    {
+                        "name":"brain",
+                        "position": [1.1, 1.1, -1.5],
+                        "rotation": [45, 45,0],
+                        "scale": [0.3, 0.3, 0.3],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "brain",
+                                "material": "brain"
                             }
                         ]
                     }, 
