@@ -22,6 +22,7 @@ class Playstate : public our::State
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
     float time;
+    float scale=1.0;
 
     void onInitialize() override
     {
@@ -57,6 +58,7 @@ class Playstate : public our::State
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
+        this->scaleBrain();
         this->checkItemFound(cameraEntity->localTransform.position);
         this->checkPlayerWin();
         this->onStaircase();
@@ -107,6 +109,8 @@ private:
     const int MAX_ITEMS=5;
     // Pointer to the exit gate
     our::Entity* gate=nullptr;
+    // Pointer to brain
+    our::Entity* brain;
 
 
     our::Entity *getCamera()
@@ -137,7 +141,19 @@ private:
         for (auto entity : world.getEntities())
             if (entity->name == "objectiveItem")
                 objectiveItems.push_back(entity);
+            else if(entity->name=="brain")
+            {
+                brain=entity;
+                scale=brain->localTransform.scale.x;
+            }
     }
+    //scale down brain size
+    void scaleBrain()
+    {
+        brain->localTransform.scale= glm::vec3(scale*((150-time)/150.0));
+        std::cout<<time<<std::endl;
+    }
+
     // check if the one of the objective items is found & collect it e
     void checkItemFound(const glm::vec3 &position)
     {
@@ -151,6 +167,7 @@ private:
                 foundEntity = entity;
                 break;
             }
+
         }
         if (foundEntity && getApp()->getKeyboard().justPressed(GLFW_KEY_E))
         {
