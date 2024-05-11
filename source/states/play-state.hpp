@@ -59,6 +59,7 @@ class Playstate : public our::State
         // And finally we use the renderer system to draw the scene
         this->checkItemFound(cameraEntity->localTransform.position);
         this->checkPlayerWin();
+        this->onStaircase();
         renderer.render(&world);
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
@@ -75,11 +76,11 @@ class Playstate : public our::State
     {
         // Don't forget to destroy the renderer
         renderer.destroy();
-        // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
+        // // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
         cameraController.exit();
-        // Clear the world
+        // // Clear the world
         world.clear();
-        // and we delete all the loaded assets to free memory on the RAM and the VRAM
+        // // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
     }
 
@@ -100,6 +101,7 @@ private:
     const int MAX_ITEMS=5;
     // Pointer to the exit gate
     our::Entity* gate=nullptr;
+
 
     our::Entity *getCamera()
     {
@@ -182,4 +184,20 @@ private:
         if(time >= 150)
 			getApp()->changeState("lose");
     }
+    void onStaircase(){
+        float x=cameraEntity->localTransform.position.x;
+        float z=cameraEntity->localTransform.position.z;
+        float &y=cameraEntity->localTransform.position.y;
+        //handle stair elevation increase
+        if(x<=-0.71 && x>= -3.43762 && z>=4.50953 && z<=6.54807)
+        {
+            // handle under the stairs secret place
+            if(z<4.8 || abs(y-1.3)>0.1)
+                y=0.73582*z-2.018205;
+        }
+        else if(z< 4.5 || x<=-3.45)
+            y=1.3;
+    }
+
+
 };
