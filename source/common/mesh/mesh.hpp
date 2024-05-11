@@ -45,7 +45,7 @@ namespace our {
             glVertexAttribPointer(ATTRIB_LOC_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
             glEnableVertexAttribArray(ATTRIB_LOC_POSITION);
 
-            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color))); // (3 * sizeof(float) is the offset of the color attribute in the struct, since the color attribute is the second one after the position attribute)
+            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color))); 
             glEnableVertexAttribArray(ATTRIB_LOC_COLOR);
 
             glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, tex_coord)));
@@ -66,7 +66,7 @@ namespace our {
         {
             //TODO: (Req 2) Write this function
             glBindVertexArray(VAO);
-            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0); // elementCount is the 6 in lab2 example
+            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0);
             glBindVertexArray(0);
         }
 
