@@ -12,6 +12,7 @@
 
 #include "input/keyboard.hpp"
 #include "input/mouse.hpp"
+#include "./miniaudio.h"
 
 namespace our {
 
@@ -30,6 +31,8 @@ namespace our {
         // Each scene will have a pointer to the application that owns it
         Application* application;
         friend Application;
+        ma_engine* soundEngine;
+        
     public:
         virtual void onInitialize(){}                   // Called once before the game loop.
         virtual void onImmediateGui(){}                 // Called every frame to draw the Immediate GUI (if any).
@@ -46,6 +49,8 @@ namespace our {
 
         //Returns a pointer
         Application* getApp() { return application; }
+        //Returns a pointer to the sound engine
+        ma_engine* getSoundEngine(){ return soundEngine;}
     };
 
     // This class act as base class for all the Applications covered in the examples.

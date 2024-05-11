@@ -82,6 +82,12 @@ class Playstate : public our::State
         world.clear();
         // // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
+        //Destroy all the members of playstate
+        pickUpText=nullptr;
+        objectiveItems.clear();
+        cameraEntity=nullptr;
+        counterDisplay.clear();
+        gate=nullptr;
     }
 
 private:

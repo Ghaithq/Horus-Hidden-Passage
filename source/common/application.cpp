@@ -1,3 +1,4 @@
+#define MINIAUDIO_IMPLEMENTATION
 #include "application.hpp"
 
 #include <iostream>
@@ -13,8 +14,7 @@
 
 #include <flags/flags.h>
 
-#define MINIAUDIO_IMPLEMENTATION
-#include "./miniaudio.h"
+
 
 // Include the Dear ImGui implementation headers
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD2
@@ -237,6 +237,17 @@ int our::Application::run(int run_for_frames) {
         currentState = nextState;
         nextState = nullptr;
     }
+    // Initialize the sound engine
+    ma_result result;
+    ma_engine engine;
+    result = ma_engine_init(NULL, &engine);
+    if (result != MA_SUCCESS) {
+        printf("Failed to initialize audio engine.");
+        return -1;
+    }
+
+    ma_engine_play_sound(&engine, ".\\assets\\audios\\tomb_long.mp3", NULL);
+
     // Call onInitialize if the scene needs to do some custom initialization (such as file loading, object creation, etc).
     if(currentState) currentState->onInitialize();
 
@@ -244,19 +255,7 @@ int our::Application::run(int run_for_frames) {
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
 
-    ma_result result;
-    ma_engine engine;
-
-
-
-    result = ma_engine_init(NULL, &engine);
-    if (result != MA_SUCCESS) {
-        printf("Failed to initialize audio engine.");
-        return -1;
-    }
-
-     ma_engine_play_sound(&engine, ".\\assets\\audios\\tomb_long.mp3", NULL);
-
+   
     //Game loop
     while(!glfwWindowShouldClose(window)){
         if(run_for_frames != 0 && current_frame >= run_for_frames) break;
