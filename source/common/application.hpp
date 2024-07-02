@@ -31,7 +31,6 @@ namespace our {
         // Each scene will have a pointer to the application that owns it
         Application* application;
         friend Application;
-        ma_engine* soundEngine;
         
     public:
         virtual void onInitialize(){}                   // Called once before the game loop.
@@ -50,7 +49,6 @@ namespace our {
         //Returns a pointer
         Application* getApp() { return application; }
         //Returns a pointer to the sound engine
-        ma_engine* getSoundEngine(){ return soundEngine;}
     };
 
     // This class act as base class for all the Applications covered in the examples.
@@ -58,10 +56,9 @@ namespace our {
     class Application {
     protected:
         GLFWwindow * window = nullptr;      // Pointer to the window created by GLFW using "glfwCreateWindow()".
-        
         Keyboard keyboard;                  // Instance of "our" keyboard class that handles keyboard functionalities.
         Mouse mouse;                        // Instance of "our" mouse class that handles mouse functionalities.
-
+        ma_engine* soundEngine;
         nlohmann::json app_config;           // A Json file that contains all application configuration
 
         std::unordered_map<std::string, State*> states;   // This will store all the states that the application can run
@@ -76,7 +73,8 @@ namespace our {
         virtual void setupCallbacks();                              // Sets-up the window callback functions from GLFW to our (Mouse/Keyboard) classes.
 
     public:
-
+        bool torchFound=false;
+        bool itemFound=false;
         // Create an application with following configuration
         Application(const nlohmann::json& app_config) : app_config(app_config) {}
         // On destruction, delete all the states
@@ -138,5 +136,9 @@ namespace our {
             glfwGetWindowSize(window, &(size.x), &(size.y));
             return size;
         }
+        ma_engine* getSoundEngine(){ return soundEngine;}
+
+
+
     };
 }

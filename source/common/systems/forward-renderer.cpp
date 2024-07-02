@@ -302,15 +302,16 @@ namespace our {
             if (dynamic_cast<LitMaterial*>(transparentCommand.material))
             {
 
-                //addLight(transparentCommand.material->shader);
-                transparentCommand.material->shader->set("object_to_world", transparentCommand.localToWorld);
-                transparentCommand.material->shader->set("object_to_world_inv_transpose", glm::transpose(glm::inverse(transparentCommand.localToWorld)));
-                transparentCommand.material->shader->set("view_projection", glm::transpose(glm::inverse(VP)));
+                addLight(transparentCommand.material->shader);
+                transparentCommand.material->shader->set("object_to_world",transparentCommand.localToWorld);
+                transparentCommand.material->shader->set("object_to_world_inv_transpose",glm::transpose(glm::inverse(transparentCommand.localToWorld)));
+                transparentCommand.material->shader->set("view_projection",VP);
                 transparentCommand.material->shader->set("camera_position", cameraPos);
-                transparentCommand.material->shader->set("material.diffuse", camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
+                // opaqueCommand.material->shader->set("material.diffuse", ((LitMaterial*)opaqueCommand.material)->diffuse);
+                transparentCommand.material->shader->set("material.diffuse", ((LitMaterial*)transparentCommand.material)->diffuse);
                 transparentCommand.material->shader->set("material.specular", ((LitMaterial*)transparentCommand.material)->specular);
                 transparentCommand.material->shader->set("material.ambient", ((LitMaterial*)transparentCommand.material)->ambient);
-                transparentCommand.material->shader->set("material.shininess", ((LitMaterial*)transparentCommand.material)->shininess);
+                transparentCommand.material->shader->set("material.shininess",((LitMaterial*)transparentCommand.material)->shininess);
             }
             transparentCommand.material->shader->set("transform", VP*transparentCommand.localToWorld);
             transparentCommand.mesh->draw();

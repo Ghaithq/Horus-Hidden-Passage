@@ -3,7 +3,7 @@
 #include "../ecs/world.hpp"
 #include "../components/camera.hpp"
 #include "../components/free-camera-controller.hpp"
-
+#include "../components/light.hpp"
 #include "../application.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
@@ -132,16 +132,18 @@ namespace our
 
             // std::cout << '(' << position.x << ',' << position.z << ')' << std::endl;
             if (!(newPosition == position) && !checkCollision(world, newPosition))
+            {
                 position = newPosition;
+            }
         }
         bool checkCollision(World *world, glm::vec3 &position)
         {
-            const float minDistance = 0.75f;
+            const float minDistance = 0.8f;
             if (position.x <= -10.5 || position.z >= 10 || position.z <= -10)
                 return true;
             for (auto entity : world->getEntities())
             {
-                if (entity->getComponent<CameraComponent>() || entity->getComponent<LightComponent>() ||!entity->getComponent<MeshRendererComponent>()->material->transparent)
+                if (entity->name!="block")
                     continue;
                 glm::vec3 entityPosition = entity->localTransform.position;
                 if ((abs(position.x - entityPosition.x) + abs(position.z - entityPosition.z)) <= minDistance)

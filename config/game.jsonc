@@ -11,8 +11,8 @@
     },
     "scene": {
       "renderer": {
-        "sky": "assets/textures/sky.jpg"
-        //"postprocess": "assets/shaders/postprocess/blur.frag"
+        "sky": "assets/textures/sky.jpg",
+        "postprocess": "assets/shaders/postprocess/distortion.frag"
       },
         "assets":{
             "shaders":{
@@ -39,8 +39,7 @@
                 "gold": "assets/textures/gold.jpg",
                 "egyptian": "assets/textures/egyptian.png",
                 "floor_tile":"assets/textures/Floor_tile_basic_diff.png",
-                "brain":"assets/textures/brain.png"
-                
+                "torch": "assets/textures/torch.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -50,7 +49,7 @@
                 "tomb_mesh" :"assets/models/tomb.obj",
                 "box":"assets/models/box.obj",
                 "one":"assets/models/numerouno.obj",
-                "puzzle":"assets/models/puzzle2.obj",
+                "puzzle":"assets/models/puzzle.obj",
                 "key":"assets/models/Key.obj",
                 "eye":"assets/models/Eye.obj",
                 "scale":"assets/models/Scale.obj",
@@ -67,8 +66,9 @@
                 "4_5":"assets/models/4_5.obj",
                 "5_5":"assets/models/5_5.obj",
                 "tomb_gate":"assets/models/tomb_gate.obj",
-                "brain":"assets/models/brain.obj"
-                
+                "openText":"assets/models/openText.obj",
+                "torch": "assets/models/torch.obj",
+                "ceiling": "assets/models/ceiling.obj"
             },
             "samplers":{
                 "default":{},
@@ -140,21 +140,6 @@
                     "texture": "monkey",
                     "sampler": "default"
                 },
-                "brain":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "tomb_texture",
-                    "sampler": "default"
-                },
                 "itemMaterial":{
                     "type": "textured",
                     "shader": "textured",
@@ -205,7 +190,7 @@
                     "shader": "light",
                     "pipelineState": {
                         "faceCulling":{
-                            "enabled": true
+                            "enabled": false
                         },
                         "depthTesting":{
                             "enabled": true
@@ -214,10 +199,10 @@
                     "tint": [0.5, 0.5, 0.5, 1],
                     "texture": "tomb_texture",
                     "sampler": "default",
-                    "diffuse":[0.2,0.2,0.2],
-                    "specular":[0.2,0.2,0.2],
-                    "ambient":[0,0,0],
-                    "shininess":0.2
+                    "diffuse":[1,1,1],
+                    "specular":[0,0,0],
+                    "ambient":[0.1,0.1,0.1],
+                    "shininess":0.5
                 },
                 "egyptian":{
                     "type": "textured",
@@ -252,7 +237,7 @@
                     "sampler": "pixelated",
                     "diffuse":[0.4,0.4,0.4],
                     "specular":[0,0,0],
-                    "ambient":[0,0,0],
+                    "ambient":[0.1,0.1,0.1],
                     "shininess":0.2
                 },
                 "floor":{
@@ -286,9 +271,9 @@
                     // "tint": [1, 1, 1, 1],
                     "texture": "floor_tile",
                     "sampler": "pixelated",
-                    "diffuse":[0.1,0.1,0.1],
+                    "diffuse":[0.2,0.2,0.2],
                     "specular":[0,0,0],
-                    "ambient":[0,0,0],
+                    "ambient":[0.01,0.01,0.01],
                     "shininess":0.2
                 },
                 "lit_objectiveItem":{
@@ -304,18 +289,62 @@
                         
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "tomb_texture",
+                    "texture": "gold",
+                    "sampler": "default",
+                    "diffuse":[1,1,1],
+                    "specular":[0,0,0],
+                    "ambient":[0.5,0.5,0.5],
+                    "shininess":0.9
+                },
+                "fire":{
+                    "type": "lit",
+                    "shader": "light",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                        
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "glass",
                     "sampler": "default",
                     "diffuse":[0.1,0.1,0.1],
                     "specular":[0,0,0],
-                    "ambient":[0.3,0.3,0.3],
-                    "shininess":0.9
+                    "ambient":[5,5,5],
+                    "shininess":0.6,
+                    "transparent":true
+                },
+                "torch_material":
+                {
+                    "type": "lit",
+                    "shader": "light",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                        
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "torch",
+                    "sampler": "default",
+                    "diffuse":[0.1,0.1,0.1],
+                    "specular":[0,0,0],
+                    "ambient":[0.5,0.5,0.5],
+                    "shininess":0.9,
+                    "transparent":true
                 }
 
             }
         },
         "world":[
             {
+                "rotation":[0,0,0],
                 "position": [0, 1.3, 0],
                 "components": [
                     {
@@ -330,7 +359,7 @@
                 "children": [
                     {
                         "name":"counter0",
-                        "position": [-1.3, 1.1, -1.5],
+                        "position": [-1.3, -1.1, 1.5],
                         "rotation": [0, 0, 0],
                         "scale": [0.3, 0.3, 0.3],
                         "components": [
@@ -342,29 +371,25 @@
                         ]
                     }, 
                     {
-                        "name":"brain",
-                        "position": [1.1, 1.1, -1.5],
-                        "rotation": [45, 45,0],
-                        "scale": [0.3, 0.3, 0.3],
-                        "components": [
-                            {
-                                "type": "Mesh Renderer",
-                                "mesh": "brain",
-                                "material": "brain"
-                            }
-                        ]
-                    }, 
-                    {
-                        "position": [0, 1.3, 0],
+                        "name":"handtorch",
+                        "position": [0.8, -0.8, -1],
+                        "rotation": [135, 45, 180],
+                        "scale": [1, 1, 1.0],
                         "components":[
                             {
+                                "type": "Mesh Renderer",
+                                "mesh": "torch",
+                                "material": "torch_material"
+                            },
+                            {
+                            "position":[-0.5,0.5,0],
                             "type":"Light",
                             "diffuse":[1,1,1],
-                            "specular":[1,1,1],
+                            "specular":[0,0,0],
                             "ambient":[1, 1, 1],
                             "light_type":"point",
                             "color":[1,0.5,0.8],
-                            "attenuation": [0,0.15,0],
+                            "attenuation": [0,0.1,0],
                             "enabled":true
 
                             // "angle_inner":0.7,
@@ -440,9 +465,9 @@
                     },
                     {
                         "name": "textE",
-                        "position": [-0.5, 1, -1.2],
+                        "position": [-0.5, -1, -0.8],
                         "rotation": [0, 0, 0],
-                        "scale": [0.15, 0.15, 0.15],
+                        "scale": [0.3, 0.3, 0.3],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
@@ -454,13 +479,15 @@
                     
                 ]
             },
-            {
+            { 
+
+
                 "scale":[1,1,1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "tomb_mesh",
-                        "material": "lit_objectiveItem"
+                        "material": "lit_tomb_material"
                     }
                 ],
                 "children":[
@@ -470,13 +497,27 @@
                             {
                                 "type": "Mesh Renderer",
                                 "mesh": "tomb_gate",
-                                "material": "egyptian"
-    
+                                "material": "lit_tomb_material"
                             },
                             {
                                 "type": "Movement"
                             }
                         ]
+                    },
+                    {
+                            "position":[0,5,0],
+                            "name":"ceiling",
+                            "scale":[1,1,1],
+                            "components": [
+                                {
+                                    "type": "Mesh Renderer",
+                                    "mesh": "ceiling",
+                                    "material": "lit_tomb_material"
+                                },
+                                {
+                                    "type": "Movement"
+                                }
+                            ]
                     },
                     {
                         "position":[0,0.2,0],
@@ -490,6 +531,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-2.9628,1.5,1.9909],
                         "components":[
                             {
@@ -502,6 +544,7 @@
 
                     },
                     {
+                        "name":"block",
                     "position":[-5.00784,1.5,-9.0061],
                         "components":[
                             {
@@ -513,6 +556,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.7139,1.5,-1.74943],
                         "components":[
                             {
@@ -524,6 +568,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.6368,1.5,-0.5509493],
                         "components":[
                             {
@@ -535,6 +580,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.6762,1.5,0.883867],
                         "components":[
                             {
@@ -546,6 +592,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.6762,1.5,2.342803],
                         "components":[
                             {
@@ -557,6 +604,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.4306,1.325,1.90313],
                         "components":[
                             {
@@ -568,6 +616,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.96114,1.44431,3.02634],
                         "components":[
                             {
@@ -579,6 +628,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[12.315,1.5,4.26013],
                         "components":[
                             {
@@ -590,6 +640,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[12.3675,1.5,5.47837],
                         "components":[
                             {
@@ -601,6 +652,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.612,1.5,6.4557],
                         "components":[
                             {
@@ -612,6 +664,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[12.359,1.5,7.6466],
                         "components":[
                             {
@@ -623,6 +676,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[12.379,1.5,8.7808],
                         "components":[
                             {
@@ -634,6 +688,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[12.071,1.5,9.7497],
                         "components":[
                             {
@@ -645,6 +700,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[10.95,1.5,10.436],
                         "components":[
                             {
@@ -656,6 +712,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[9.4963,1.5,10.436],
                         "components":[
                             {
@@ -667,6 +724,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[8.125,1.5,10.436],
                         "components":[
                             {
@@ -678,6 +736,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[6.885,1.5,10.436],
                         "components":[
                             {
@@ -689,6 +748,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[5.661,1.5,10.436],
                         "components":[
                             {
@@ -700,6 +760,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[4.593,1.5,10.436],
                         "components":[
                             {
@@ -711,6 +772,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.3777,1.5,10.436],
                         "components":[
                             {
@@ -722,6 +784,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[2.1211,1.5,10.436],
                         "components":[
                             {
@@ -733,6 +796,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[1.1191,1.5,9.9266],
                         "components":[
                             {
@@ -744,6 +808,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.6224,1.5,9.1176],
                         "components":[
                             {
@@ -755,6 +820,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.6224,1.5,7.9965],
                         "components":[
                             {
@@ -766,6 +832,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.6224,1.5,6.96604],
                         "components":[
                             {
@@ -777,6 +844,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.6224,1.5,5.4845],
                         "components":[
                             {
@@ -788,6 +856,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.6224,1.5,4.4769],
                         "components":[
                             {
@@ -799,6 +868,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.6224,1.5,3.2564],
                         "components":[
                             {
@@ -810,6 +880,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[1.5023,1.5,6.4779],
                         "components":[
                             {
@@ -821,6 +892,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[1.3036,1.5,2.7313],
                         "components":[
                             {
@@ -832,6 +904,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[2.5383,1.5,2.6745],
                         "components":[
                             {
@@ -843,6 +916,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.5743,1.5,2.6745],
                         "components":[
                             {
@@ -854,6 +928,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[4.7238,1.5,2.6745],
                         "components":[
                             {
@@ -865,6 +940,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.8177,1.5,2.6745],
                         "components":[
                             {
@@ -876,6 +952,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.8319,1.5,2.6745],
                         "components":[
                             {
@@ -887,6 +964,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[8.9751,1.5,2.65084],
                         "components":[
                             {
@@ -898,6 +976,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[10.075,1.5,2.65084],
                         "components":[
                             {
@@ -909,6 +988,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[11.163,1.5,2.65084],
                         "components":[
                             {
@@ -920,6 +1000,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.9155,1.5,-7.4253],
                         "components":[
                             {
@@ -931,6 +1012,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.9155,1.5,-6.3],
                         "components":[
                             {
@@ -942,6 +1024,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.9155,1.5,-5.3297],
                         "components":[
                             {
@@ -953,6 +1036,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.9155,1.5,-4.223],
                         "components":[
                             {
@@ -964,6 +1048,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[3.9155,1.5,-3.235],
                         "components":[
                             {
@@ -975,6 +1060,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[4.9055,1.5,-3.1],
                         "components":[
                             {
@@ -986,6 +1072,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[5.927,1.5,-3.1],
                         "components":[
                             {
@@ -997,6 +1084,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[6.9662,1.5,-3.1],
                         "components":[
                             {
@@ -1008,6 +1096,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.954,1.5,-3.1],
                         "components":[
                             {
@@ -1019,6 +1108,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[9.061,1.5,-3.1],
                         "components":[
                             {
@@ -1030,6 +1120,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[10.134,1.5,-3.1],
                         "components":[
                             {
@@ -1041,6 +1132,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.852,1.5,-4.1035],
                         "components":[
                             {
@@ -1052,6 +1144,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.852,1.5,-5.0913],
                         "components":[
                             {
@@ -1063,6 +1156,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.852,1.5,-6.1812],
                         "components":[
                             {
@@ -1074,6 +1168,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.852,1.5,-7.2541],
                         "components":[
                             {
@@ -1085,6 +1180,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.852,1.5,-8.12],
                         "components":[
                             {
@@ -1096,6 +1192,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.852,1.5,-9.1],
                         "components":[
                             {
@@ -1107,6 +1204,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.034,1.5,-9.485],
                         "components":[
                             {
@@ -1118,6 +1216,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-4.9536,1.5,-4.0274],
                         "components":[
                             {
@@ -1129,6 +1228,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-6.893,1.5,-1.9696],
                         "components":[
                             {
@@ -1140,6 +1240,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-2.9809,1.5,-1.954],
                         "components":[
                             {
@@ -1151,6 +1252,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[1.0354,1.5,-1.954],
                         "components":[
                             {
@@ -1162,6 +1264,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-2.1309,1.5,-6.05],
                         "components":[
                             {
@@ -1173,6 +1276,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-6.0103,1.5,5.1737],
                         "components":[
                             {
@@ -1184,6 +1288,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.020915,1.5,-4.0357],
                         "components":[
                             {
@@ -1195,6 +1300,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-3.094,1.5,-6.8876],
                         "components":[
                             {
@@ -1206,6 +1312,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.049047 ,1.5,-8.87754],
                         "components":[
                             {
@@ -1217,6 +1324,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[1.0115,1.5,-1.9316],
                         "components":[
                             {
@@ -1228,6 +1336,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-2.9327,1.5,-2.0542],
                         "components":[
                             {
@@ -1239,6 +1348,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-6.9382,1.5,1.9105],
                         "components":[
                             {
@@ -1250,6 +1360,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-3.0349,1.5,2.0331],
                         "components":[
                             {
@@ -1261,6 +1372,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[1.9925,1.5,-5.6305],
                         "components":[
                             {
@@ -1272,6 +1384,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-2.9572,1.5,-5.8431],
                         "components":[
                             {
@@ -1283,6 +1396,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[-2.0253,1.5,-6.9466],
                         "components":[
                             {
@@ -1294,6 +1408,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[0.86849,1.5,1.7838],
                         "components":[
                             {
@@ -1305,6 +1420,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[4.8905,1.5,1.9064],
                         "components":[
                             {
@@ -1316,6 +1432,7 @@
                         ]
                     },
                     {
+                        "name":"block",
                         "position":[7.9313,1.5,1.8328],
                         "components":[
                             {
@@ -1327,13 +1444,15 @@
                         ]
                     },
                     {
+                        
                         "name": "objectiveItem",
-                        "position":[11.9926,0.2,7.0548],
-                        "scale":[0.2,0.2,0.2],
+                        "position":[-1.75428,0.5,9.36686],
+                        "scale":[0.08,0.08,0.08],
+
                         "components":[
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "staff",
+                                "mesh": "puzzle",
                                 "material": "lit_objectiveItem"
     
                             },
@@ -1347,12 +1466,13 @@
                     },
                     {
                         "name": "objectiveItem",
-                        "position":[4.3209,0.2,-3.66889],
-                        "scale":[0.2,0.2,0.2],
+                        "position":[6.08,0.5,9.90305],
+                        "scale":[0.08,0.08,0.08],
+
                         "components":[
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "scale",
+                                "mesh": "puzzle",
                                 "material": "lit_objectiveItem"
     
                             },
@@ -1365,12 +1485,14 @@
                     },
                     {
                         "name": "objectiveItem",
-                        "position":[-10.5,0.2,-6.8861],
-                        "scale":[0.2,0.2,0.2],
+                        "position":[-10.5,0.5,-6.8861],
+                        "scale":[0.08,0.08,0.08],
+
+
                         "components":[
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "chain",
+                                "mesh": "puzzle",
                                 "material": "lit_objectiveItem"
     
                             },
@@ -1383,12 +1505,14 @@
                     },
                     {
                         "name": "objectiveItem",
-                        "scale":[0.2,0.2,0.2],
-                        "position":[-4.90488,0.2,-9.79381],
+                        "scale":[0.08,0.08,0.08],
+
+
+                        "position":[-10.4935,0.5,9.65367],
                         "components":[
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "necklace",
+                                "mesh": "puzzle",
                                 "material": "lit_objectiveItem"
     
                             },
@@ -1401,35 +1525,177 @@
                     {
                         "name": "objectiveItem",
                         
-                        "position":[9.01098, 0.2, 1.92645],
+                        "position":[4.22867, 0.5, -3.76011],
+                        "scale":[0.08,0.08,0.08],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "puzzle",
+                                "material": "lit_objectiveItem"
+                            },
+                            {
+                                "type": "Movement",
+                                "angularVelocity": [0, 45, 0]
+                            },
+                            {
+                                    "type":"Light",
+                                    "diffuse":[1,1,1],
+                                    "specular":[1,1,1],
+                                    "ambient":[1, 1, 1],
+                                    "light_type":"point",
+                                    "color":[1,0.5,0.8],
+                                    "attenuation": [0,0.15,0],
+                                    "enabled":false
+                            }
+                        ]
+
+                    },
+                    {
+                        "name": "torch",
+                        "position":[0.001583,2.5, -3.99651],
                         "scale":[0.2,0.2,0.2],
                         "components":[
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "key",
-                                "material": "lit_objectiveItem"
+                                "mesh": "monkey",
+                                "material": "fire"
     
                             },
                             {
                                 "type": "Movement",
                                 "angularVelocity": [0, 45, 0]
-                            }
+                            },
+                            {  
+                                "type":"Light",
+                                "diffuse":[10,10,10],
+                                "specular":[0,0,0],
+                                "ambient":[10, 10, 10],
+                                "light_type":"point",
+                                "color":[1,0.5,0.8],
+                                "attenuation": [0,0.15,0],
+                                "enabled":false
+                             }
                         ]
-
-                    }
-                    // {
-                    //     "position":[-6,1.5,0],
-                    //     "components":[
-                    //         {
-                    //             "type": "Mesh Renderer",
-                    //             "mesh": "key",
-                    //             "material": "egyptian"
+                    },{
+                        "name": "torch",
+                        "position":[-5.09924,3, -9.01821],
+                        "scale":[0.2,0.2,0.2],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "monkey",
+                                "material": "fire"
     
-                    //         }
-                    //     ]
-
-                    // }
-
+                            },
+                            {
+                                "type": "Movement",
+                                "angularVelocity": [0, 45, 0]
+                            },
+                            {  
+                                "type":"Light",
+                                "diffuse":[10,10,10],
+                                "specular":[0,0,0],
+                                "ambient":[10, 10, 10],
+                                "light_type":"point",
+                                "color":[1,0.5,0.8],
+                                "attenuation": [0,0.15,0],
+                                "enabled":false
+                             }
+                        ]
+                    },
+                    {
+                        "name": "torch",
+                        "position":[-5.00122,2.5, -4.01914],
+                        "scale":[0.2,0.2,0.2],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "monkey",
+                                "material": "fire"
+    
+                            },
+                            {
+                                "type": "Movement",
+                                "angularVelocity": [0, 45, 0]
+                            },
+                            {  
+                                "type":"Light",
+                                "diffuse":[10,10,10],
+                                "specular":[0,0,0],
+                                "ambient":[10, 10, 10],
+                                "light_type":"point",
+                                "color":[1,0.5,0.8],
+                                "attenuation": [0,0.15,0],
+                                "enabled":false
+                             }
+                        ]
+                    },
+                    {
+                        "name": "torch",
+                        "position":[6.7,2.5, -9.75337],
+                        "scale":[0.2,0.2,0.2],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "monkey",
+                                "material": "fire"
+    
+                            },
+                            {
+                                "type": "Movement",
+                                "angularVelocity": [0, 45, 0]
+                            },
+                            {  
+                                "type":"Light",
+                                "diffuse":[10,10,10],
+                                "specular":[0,0,0],
+                                "ambient":[10, 10, 10],
+                                "light_type":"point",
+                                "color":[1,0.5,0.8],
+                                "attenuation": [0,0.15,0],
+                                "enabled":false
+                             }
+                        ]
+                    },
+                    {
+                        "name": "torch",
+                        "position":[1.24761,2.5,6.4691],
+                        "scale":[0.2,0.2,0.2],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "monkey",
+                                "material": "fire"
+    
+                            },
+                            {
+                                "type": "Movement",
+                                "angularVelocity": [0, 45, 0]
+                            },
+                            {  
+                                "type":"Light",
+                                "diffuse":[10,10,10],
+                                "specular":[0,0,0],
+                                "ambient":[10, 10, 10],
+                                "light_type":"point",
+                                "color":[1,0.5,0.8],
+                                "attenuation": [0,0.15,0],
+                                "enabled":false
+                             }
+                        ]
+                    },
+                    {
+                        "position":[8.47698 ,2.5,10.1],
+                        "scale":[0.03,0.03,0.03],
+                        "rotation":[0,180,0],
+                        "components":[
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "openText",
+                                "material": "fire"
+                            } 
+                        ]
+                    }
                 ]
             }
             //    {
