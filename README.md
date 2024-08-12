@@ -106,3 +106,12 @@ effect shader.
 ![image](https://github.com/user-attachments/assets/3425c0c4-29b4-41ef-a39d-4e5a090c8af1)
 ![image](https://github.com/user-attachments/assets/465197b8-98ec-4e22-b5f3-d946c7f82b12)
 ![image](https://github.com/user-attachments/assets/9d2b78b6-20dc-4bdf-be38-e97b4bd895b9)
+
+## ©️Developers
+
+| Name                 |         Email          |
+|----------------------|:----------------------:|
+| Fares Atef           | faresatef553@gmail.com |
+| Ghaith Mohamed       |  gaoia123@gmail.com    |
+| Amr ElSheshtawy      | Sheshtawy321@gmail.com |
+| Amr Magdy            |  amr4121999@gmail.com  |
